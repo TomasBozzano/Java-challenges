@@ -22,12 +22,21 @@ public class Main {
                 """;
         boolean running = true;
         Scanner scanner = new Scanner(System.in);
+        Scanner apiScanner = new Scanner(System.in);
+        ControllerExchange control = new ControllerExchange();
+        System.out.print("Por favor, ingresa tu API key: ");
+        String apiKey = apiScanner.nextLine();
+        String validationResponse = control.validateApiKey(apiKey);
+        if (!validationResponse.equals("success")) {
+            System.out.println("API key inválida: " + validationResponse);
+            return;
+        }
+
         System.out.println(menu);
 
         while(running){
             String option = scanner.nextLine();
-            ControllerExchange control = new ControllerExchange();
-            Exchange exchange = control.getExchangeConnection();
+            Exchange exchange = control.getExchangeConnection(apiKey);
             switch (option) {
                 case "1" -> {
                     System.out.println("Has seleccionado Dolar -> Peso Argentino");

@@ -8,15 +8,16 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class Connection {
-    private String url = "https://v6.exchangerate-api.com/v6/2856e9f503c469a6d9836d3f/latest/USD";
+    private String url = "https://v6.exchangerate-api.com/v6/";
+    private String urlFinal = "/latest/USD";
 
     public Connection() {
     }
 
-    public String getConnection() {
+    public String getConnection(String key) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(this.url))
+                .uri(URI.create(this.url + key + this.urlFinal))
                 .GET()
                 .build();
 

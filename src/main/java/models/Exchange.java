@@ -12,11 +12,14 @@ public class Exchange {
     private String time_next_update_utc;
     private String base_code;
     private Map<String, Double> conversion_rates;
+    private String errorType;
 
     public Exchange() {
     }
 
-    public Exchange(String result, String documentation, String terms_of_use, String time_last_update_unix, String time_last_update_utc, String time_next_update_unix, String time_next_update_utc, String base_code, Map<String, Double> conversion_rates) {
+    public Exchange(String result, String documentation, String terms_of_use, String time_last_update_unix,
+            String time_last_update_utc, String time_next_update_unix, String time_next_update_utc, String base_code,
+            Map<String, Double> conversion_rates, String errorType) {
         this.result = result;
         this.documentation = documentation;
         this.terms_of_use = terms_of_use;
@@ -26,6 +29,7 @@ public class Exchange {
         this.time_next_update_utc = time_next_update_utc;
         this.base_code = base_code;
         this.conversion_rates = conversion_rates;
+        this.errorType = errorType;
     }
 
     public double getRate(String code) {
@@ -108,5 +112,13 @@ public class Exchange {
 
     public void setConversion_rates(Map<String, Double> conversion_rates) {
         this.conversion_rates = conversion_rates;
+    }
+
+    public String getErrorType() {
+        return errorType;
+    }
+
+    public void setErrorType(String errorType) {
+        this.errorType = errorType;
     }
 }

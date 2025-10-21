@@ -13,12 +13,18 @@ public class ControllerExchange {
         this.exchange = new Exchange();
     }
 
-    public Exchange getExchangeConnection(){
-        String jsonResponse = this.connection.getConnection();
+    public Exchange getExchangeConnection(String apiKey) {
+        String jsonResponse = this.connection.getConnection(apiKey);
         Gson gson = new Gson();
         return gson.fromJson(jsonResponse, Exchange.class);
     }
 
+    public String validateApiKey(String apiKey) {
+        String response = this.connection.getConnection(apiKey);
+        Gson gson = new Gson();
+        Exchange exchangeResponse = gson.fromJson(response, Exchange.class);
+        return exchangeResponse.getResult();
+    }
     public Connection getConnection() {
         return connection;
     }
